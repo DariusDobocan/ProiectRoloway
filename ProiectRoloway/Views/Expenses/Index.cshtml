@@ -1,0 +1,67 @@
+﻿
+@model IEnumerable<ProiectRoloway.Models.Expense>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Expenses</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Add")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpenseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpenseAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+
+        if ((string)Session["Id"] == (string)item.UserId)
+        {
+            if (item.Deleted != "yes")
+            {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ExpenseName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ExpenseAmount)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Category)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserId)
+    </td>
+
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ExpenseId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ExpenseId })
+    </td>
+</tr>
+            }
+        }
+    }
+
+</table>

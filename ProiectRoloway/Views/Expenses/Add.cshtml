@@ -1,0 +1,80 @@
+﻿@model ProiectRoloway.Models.Expense
+@{
+    ViewBag.Title = "Add";
+}
+
+<script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
+<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
+<link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css'
+      media="screen" />
+<!-- Bootstrap -->
+<!-- Bootstrap DatePicker -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" type="text/css" />
+<!-- Bootstrap DatePicker -->
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#txtDate').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                format: "dd/mm/yyyy",
+                language: "tr"
+            });
+        });
+    </script>
+    }
+<h2>Add Expenses</h2>
+<h3>Your user id is @Session["Id"]</h3>
+    @using (Html.BeginForm("Adauga", "Expenses", FormMethod.Post))
+    {
+<table cellpadding="0" cellspacing="0">
+    <tr>
+        <th colspan="2" align="center">Customer Details</th>
+    </tr>
+    <tr>
+        <td>Expense name: </td>
+        <td>
+            @Html.TextBoxFor(model => model.ExpenseName)
+        </td>
+    </tr>
+
+    <tr>
+        <td>Expense amount: </td>
+        <td>
+            @Html.TextBoxFor(model => model.ExpenseAmount)
+        </td>
+    </tr>
+
+    <tr>
+        <td>UserId: </td>
+        <td>
+            @Html.TextBoxFor(model => model.UserId)
+            
+        </td>
+    </tr>
+
+    <tr>
+        <td>Category: </td>
+        <td>
+            @Html.TextBoxFor(model => model.Category)
+        </td>
+    </tr>
+
+    <tr>
+        <td>Date: </td>
+        <td>
+
+
+            <input type="text" id="txtDate" name="dDate" class="form-control" autocomplete="off" />
+        </td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td><input type="submit" value="Submit" /></td>
+    </tr>
+</table>
+    }
+
+

@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@{ if (Session["Username"] != null)
+    {
+        <h2>Welcome @Session["Username"].ToString()</h2>
+    }
+}
+
+<div>
+    <h2>Here you can choose whether you would like to see your expenses or income</h2>
+    <h3>Your expenses</h3> <input type="button" value="Access expenses" onclick="@("window.location.href='" + @Url.Action("Index", "Expenses") + "'");" />
+    <h3>Your income</h3>    <input type="button" value="Access incomes" onclick="@("window.location.href='" + @Url.Action("Index", "Incomes") + "'");" />
+</div>
