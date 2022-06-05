@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Delete";
+}
+
+@using (Html.BeginForm("Delete", "Users", FormMethod.Post))
+{
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th colspan="2" align="center"></th>
+        </tr>
+        <tr>
+            <td>Are you sure? </td>
+
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Yes" /></td>
+        </tr>
+    </table>
+}
+

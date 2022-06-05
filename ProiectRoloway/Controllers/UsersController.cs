@@ -11,6 +11,8 @@ using System.Web.Mvc;
 
 namespace ProiectRoloway.Controllers
 {
+
+    
     public class UsersController : Controller
     {
         public string ErrorMessage;
@@ -20,10 +22,39 @@ namespace ProiectRoloway.Controllers
         {
             return View();
         }
+
+        public ActionResult Confirmation()
+        {
+            return View();
+        }
         [HttpGet]
         public ActionResult Login()
         {
             return View();
+        }
+
+        public ActionResult Details()
+        {
+            return View();
+        }
+
+        public ActionResult Delete(String Id)
+        {
+            int id = Convert.ToInt32(Id);
+
+            using (UserDbContex udb = new UserDbContex())
+            {
+                var res = udb.Users.SingleOrDefault(m => m.Id == id);
+
+                if (res != null)
+                {
+                    udb.Users.Remove(res);
+                    udb.SaveChanges();
+                }
+
+            }
+
+            return View("Login");
         }
         //Checking if the users exists
         [HttpPost]
@@ -204,6 +235,8 @@ namespace ProiectRoloway.Controllers
                 Console.WriteLine(e.Message);
             }
         }
+
+
 
     }
 }

@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewBag.Title = "Your account";
+}
+
+<h2>Username: @Session["Username"].ToString()</h2>
+
+<h3>Change password</h3>
+
+<h3>@Html.ActionLink("Delete user", "Confirmation", new { id = (string)Session["Id"] })</h3>

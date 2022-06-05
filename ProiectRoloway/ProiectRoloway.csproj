@@ -388,6 +388,8 @@
     <Content Include="Views\Incomes\Add.cshtml" />
     <Content Include="Views\Incomes\Edit.cshtml" />
     <Content Include="Views\Incomes\Index.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Confirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
