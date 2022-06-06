@@ -1,0 +1,33 @@
+﻿@model ProiectRoloway.Models.User
+@{
+    ViewBag.Title = "ChangePsw";
+}
+
+<h2>Change Password</h2>
+
+@using (Html.BeginForm("Edit", "Users", FormMethod.Post))
+{
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th colspan="2" align="center"></th>
+        </tr>
+        <tr>
+            <td>Name: </td>
+            <td>
+                @Html.TextBoxFor(model => model.Username)
+            </td>
+        </tr>
+
+        <tr>
+            <td>Password: </td>
+            <td>
+                @Html.TextBoxFor(model => model.Password)
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+}

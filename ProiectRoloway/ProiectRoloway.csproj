@@ -390,6 +390,7 @@
     <Content Include="Views\Incomes\Index.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Confirmation.cshtml" />
+    <Content Include="Views\Users\ChangePsw.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

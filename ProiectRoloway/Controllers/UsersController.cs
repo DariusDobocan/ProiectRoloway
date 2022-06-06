@@ -37,7 +37,10 @@ namespace ProiectRoloway.Controllers
         {
             return View();
         }
-
+        public ActionResult ChangePsw()
+        {
+            return View();
+        }
         public ActionResult Delete(String Id)
         {
             int id = Convert.ToInt32(Id);
@@ -48,6 +51,7 @@ namespace ProiectRoloway.Controllers
 
                 if (res != null)
                 {
+                    udb.Users.Attach(res);
                     udb.Users.Remove(res);
                     udb.SaveChanges();
                 }
@@ -56,6 +60,19 @@ namespace ProiectRoloway.Controllers
 
             return View("Login");
         }
+
+        public ActionResult Edit(int Id)
+        {
+            using (UserDbContex udb = new UserDbContex())
+            {
+                User u = udb.Users.SingleOrDefault(m => m.Id == Id);
+
+                return View(u);
+
+            }
+            
+        }
+
         //Checking if the users exists
         [HttpPost]
         public ActionResult Verify(User user)
@@ -125,7 +142,7 @@ namespace ProiectRoloway.Controllers
                 ViewBag.Message = ErrorMessage;
 
             }
-            return View("SignUp");
+            return View("Login");
         }
         //Async method to add the user to the database
         public async Task InsertToDb(User user)
@@ -236,7 +253,45 @@ namespace ProiectRoloway.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult Edit(User user)
+        {
+            using (UserDbContex udb = new UserDbContex())
+            {
 
+                var res = udb.Users.SingleOrDefault(u => u.Username == user.Username);
+
+                if (res == null)
+                {
+                    ErrorMessage = "Contul nu exista, reincercati";
+
+                }
+                else
+                {
+
+                    StringBuilder hashedPass = new StringBuilder();
+                    //hashing the password so we can insert it in the db
+                    using (SHA256 hash = SHA256.Create())
+                    {
+                        byte[] bytes = hash.ComputeHash(Encoding.UTF8.GetBytes(user.Password));
+
+                        for (int i = 0; i < bytes.Length; ++i)
+                        {
+
+                            hashedPass.Append(bytes[i].ToString("x2"));
+                        }
+
+                    }
+                    res.Username = user.Username;
+                    res.Password = hashedPass.ToString();
+
+                    udb.SaveChanges();
+                    ErrorMessage = "Parola schimbata cu succes";
+                }
+            }
+
+            return RedirectToAction("Login");
+        }
 
     }
 }
